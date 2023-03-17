@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>提升代码可读性，减少if-else | Hu Yu</title><meta name="author" content="huyu"><meta name="copyright" content="huyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言 相信大家或多或少都接触过拥有庞大 if else 的项目代码吧，多重嵌套的 if else 在维护的时候真的让人很恼火，有时候一个 bug 排查下来，严重感觉身体被掏空😿。  本文并未有消灭或歧视 if else的意思，if else 的好用都知道，这里只是在某些特定场景为大家额外提供一种思路，增加我们代码的可读性。  短路运算💻 Javascript 的逻辑或 || 的短路运算有时候可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提升代码可读性，减少if-else">
+<meta property="og:url" content="http://example.com/posts/8101.html">
+<meta property="og:site_name" content="Hu Yu">
+<meta property="og:description" content="前言 相信大家或多或少都接触过拥有庞大 if else 的项目代码吧，多重嵌套的 if else 在维护的时候真的让人很恼火，有时候一个 bug 排查下来，严重感觉身体被掏空😿。  本文并未有消灭或歧视 if else的意思，if else 的好用都知道，这里只是在某些特定场景为大家额外提供一种思路，增加我们代码的可读性。  短路运算💻 Javascript 的逻辑或 || 的短路运算有时候可">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202934.png?x-oss-process=style/huyu">
+<meta property="article:published_time" content="2022-09-09T07:23:18.000Z">
+<meta property="article:modified_time" content="2023-03-17T16:47:44.563Z">
+<meta property="article:author" content="huyu">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202934.png?x-oss-process=style/huyu"><link rel="shortcut icon" href="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/钢铁侠.png?x-oss-process=style/huyu"><link rel="canonical" href="http://example.com/posts/8101.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":280},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":500,"languages":{"author":"作者: huyu","link":"链接: ","source":"来源: Hu Yu","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '提升代码可读性，减少if-else',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-18 00:47:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20230223150133.png?x-oss-process=style/huyu" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tools/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tools/Website/"><i class="fa-fw fas fa-file"></i><span> 文档</span></a></li><li><a class="site-page child" href="/tools/templates/"><i class="fa-fw fas fa-code"></i><span> 模板</span></a></li><li><a class="site-page child" href="/tools/plugs/"><i class="fa-fw fas fa-cube"></i><span> 插件</span></a></li><li><a class="site-page child" href="/tools/vpn/"><i class="fa-fw fas fa-water-ladder"></i><span> VPN</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-message"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/love/"><i class="fa-fw fas fa-heart"></i><span> Love</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202934.png?x-oss-process=style/huyu')"><nav id="nav"><span id="blog-info"><a href="/" title="Hu Yu"><span class="site-name">Hu Yu</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tools/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tools/Website/"><i class="fa-fw fas fa-file"></i><span> 文档</span></a></li><li><a class="site-page child" href="/tools/templates/"><i class="fa-fw fas fa-code"></i><span> 模板</span></a></li><li><a class="site-page child" href="/tools/plugs/"><i class="fa-fw fas fa-cube"></i><span> 插件</span></a></li><li><a class="site-page child" href="/tools/vpn/"><i class="fa-fw fas fa-water-ladder"></i><span> VPN</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-message"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/love/"><i class="fa-fw fas fa-heart"></i><span> Love</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">提升代码可读性，减少if-else</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-09T07:23:18.000Z" title="发表于 2022-09-09 15:23:18">2022-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-17T16:47:44.563Z" title="更新于 2023-03-18 00:47:44">2023-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/">代码优化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="提升代码可读性，减少if-else"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url('https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202934.png?x-oss-process=style/huyu');"></div><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>相信大家或多或少都接触过拥有庞大 <code>if else</code> 的项目代码吧，多重嵌套的 <code>if else</code> 在维护的时候真的让人很恼火，有时候一个 bug 排查下来，严重感觉身体被掏空😿。</p>
+<p>本文并未有消灭或歧视 <code>if else</code>的意思，<code>if else</code> 的好用都知道，这里只是在某些特定场景为大家额外提供一种思路，增加我们代码的可读性。</p>
+</blockquote>
+<h2 id="短路运算💻"><a href="#短路运算💻" class="headerlink" title="短路运算💻"></a>短路运算💻</h2><p>Javascript 的逻辑或 <code>||</code> 的短路运算有时候可以用来代替一些比较简单的 <code>if else</code></p>
+<ul>
+<li>逻辑或 <code>||</code> 的短路运算：若左边能转成true，返回左边式子的值，反之返回右边式子的值。</li>
+</ul>
+<p>下面用一个简单的案例来表述</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> c</span><br><span class="line"><span class="keyword">if</span>(a){</span><br><span class="line">    c = a</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">    c = b</span><br><span class="line">}</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>大家看着上面的代码会难受嘛（本人有一丢丢的强迫症🤦），明明就是一个很简单的判断却需要写好几行代码才能实现。这个时候我们就可以用短路运算去简化我们的代码啦🙂。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> c = a || b</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>这样看起来是不是就简洁了很多😕。</p>
+<h2 id="三元运算符🎶"><a href="#三元运算符🎶" class="headerlink" title="三元运算符🎶"></a>三元运算符🎶</h2><p>三元运算符我觉得大家应该都很熟悉吧，很多时候简单的一些判断我们都可以使用三元运算符去替代 <code>if else</code>，这里只推荐 <strong>一层</strong> 三元运算符，因为多层嵌套的三元运算符也不具备良好的可读性🥹。</p>
+<p>例子：条件为 true 时返回1，反之返回0：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fn = (nBoolean) {</span><br><span class="line">    <span class="keyword">if</span> (nBoolean) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用三元运算符</span></span><br><span class="line"><span class="keyword">const</span> fn = (nBoolean) {</span><br><span class="line">    <span class="keyword">return</span> nBoolean ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">}</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>三元运算符使用的地方也比较多，比如：条件赋值，递归…</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// num值在nBoolean为true时为10，否则为5</span></span><br><span class="line"><span class="keyword">let</span> num = nBoolean ? <span class="number">10</span> : <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 求0-n之间的整数的和</span></span><br><span class="line"><span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">n</span>){</span><br><span class="line">    sum += n</span><br><span class="line">    <span class="keyword">return</span> n &gt;= <span class="number">2</span> ? <span class="title function_">add</span>(n - <span class="number">1</span>) : result;</span><br><span class="line">};</span><br><span class="line"><span class="keyword">let</span> num = <span class="title function_">add</span>(<span class="number">10</span>);<span class="comment">//55</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="switch-case🖥️"><a href="#switch-case🖥️" class="headerlink" title="switch case🖥️"></a>switch case🖥️</h2><p>上述的两种方式：短路运算跟三元运算虽然很好用，代码也很简洁，不过都只能用于简单的判断，遇到多重条件判断就不能使用了😭。</p>
+<p>对于 <code>switch case</code>，虽然它的可读性确实比 <code>else if</code> 更高，但是我想大家应该都觉得它写起来比较麻烦吧😣（反正我觉得很麻烦😺）。</p>
+<p>例：有A、B、C、D四种种类型，在A、B的时候输出1，C输出2、D输出3，默认输出0。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> type = <span class="string">'A'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//if else if</span></span><br><span class="line"><span class="keyword">if</span> (type === <span class="string">'A'</span> || type === <span class="string">'B'</span>) {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'C'</span>) {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>);</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span>(type === <span class="string">'D'</span>) {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//switch case</span></span><br><span class="line"><span class="keyword">switch</span> (type) {</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span>)</span><br><span class="line">}</span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="对象配置-策略模式📑"><a href="#对象配置-策略模式📑" class="headerlink" title="对象配置/策略模式📑"></a>对象配置/策略模式📑</h2><p>对象配置看起来跟 <code>策略模式</code> 差不多，都是根据不同得参数使用不同得数据/算法/函数。😺</p>
+<p>策略模式就是将一系列算法封装起来，并使它们相互之间可以替换。被封装起来的算法具有独立性，外部不可改变其特性。</p>
+<p>接下来我们用对象配置的方法实现一下上述的例子</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> type = <span class="string">'A'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> tactics = {</span><br><span class="line">    <span class="string">'A'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'B'</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">'C'</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="string">'D'</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="attr">default</span>: <span class="number">0</span></span><br><span class="line">}</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(tactics[type]) <span class="comment">// 1</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>接下来用几个例子让大家更加熟悉一点。</p>
+<h3 id="案例1-商场促销价🙋"><a href="#案例1-商场促销价🙋" class="headerlink" title="案例1 商场促销价🙋"></a>案例1 商场促销价🙋</h3><p>根据不同的用户使用不同的折扣，如：普通用户不打折，普通会员用户9折，年费会员8.5折，超级会员8折。</p>
+<p>使用<code>if else</code>实现😢</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 获取折扣 --- 使用if else</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getDiscount</span> = (<span class="params">userKey</span>) =&gt; {</span><br><span class="line">    <span class="keyword">if</span> (userKey === <span class="string">'普通会员'</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.9</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (userKey === <span class="string">'年费会员'</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.85</span></span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (userKey === <span class="string">'超级会员'</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.8</span></span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDiscount</span>(<span class="string">'普通会员'</span>)) <span class="comment">// 0.9</span></span><br><span class="line"></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>使用对象配置/策略模式实现🙂</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 获取折扣 -- 使用对象配置/策略模式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getDiscount</span> = (<span class="params">userKey</span>) =&gt; {</span><br><span class="line">    <span class="comment">// 我们可以根据用户类型来生成我们的折扣对象</span></span><br><span class="line">    <span class="keyword">let</span> discounts = {</span><br><span class="line">        <span class="string">'普通会员'</span>: <span class="number">0.9</span>,</span><br><span class="line">        <span class="string">'年费会员'</span>: <span class="number">0.85</span>,</span><br><span class="line">        <span class="string">'超级会员'</span>: <span class="number">0.8</span>,</span><br><span class="line">        <span class="string">'default'</span>: <span class="number">1</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> discounts[userKey] || discounts[<span class="string">'default'</span>]</span><br><span class="line">}</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDiscount</span>(<span class="string">'普通会员'</span>)) <span class="comment">// 0.9</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>从上面的案列中可以明显看得出来，使用对象配置比使用if else可读性更高，后续如果需要添加用户折扣也只需要修改折扣对象就行👍。</p>
+<p>对象配置不一定非要使用对象去管理我们键值对，还可以使用 <code>Map</code>去管理🦋，如：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 获取折扣 -- 使用对象配置/策略模式</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">getDiscount</span> = (<span class="params">userKey</span>) =&gt; {</span><br><span class="line">    <span class="comment">// 我们可以根据用户类型来生成我们的折扣对象</span></span><br><span class="line">    <span class="keyword">let</span> discounts = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">        [<span class="string">'普通会员'</span>, <span class="number">0.9</span>],</span><br><span class="line">        [<span class="string">'年费会员'</span>, <span class="number">0.85</span>],</span><br><span class="line">        [<span class="string">'超级会员'</span>, <span class="number">0.8</span>],</span><br><span class="line">        [<span class="string">'default'</span>, <span class="number">1</span>]</span><br><span class="line">    ])</span><br><span class="line">    <span class="keyword">return</span> discounts.<span class="title function_">get</span>(userKey) || discounts.<span class="title function_">get</span>(<span class="string">'default'</span>)</span><br><span class="line">}</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getDiscount</span>(<span class="string">'普通会员'</span>)) <span class="comment">// 0.9</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="案例2-年终奖🏆"><a href="#案例2-年终奖🏆" class="headerlink" title="案例2 年终奖🏆"></a>案例2 年终奖🏆</h3><p>公司的年终奖根据员工的工资基数和绩效等级来发放的。例如，绩效为A的人年终奖有4倍工资，绩效为B的有3倍，绩效为C的只有2倍。</p>
+<p>假如财务部要求我们提供一段代码来实现这个核算逻辑，我们要怎么实现呢？</p>
+<p>这不是很简单嘛，一个函数就搞定了。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">calculateBonus</span> = (<span class="params">performanceLevel, salary</span>) =&gt; {</span><br><span class="line">    <span class="keyword">if</span> (performanceLevel === <span class="string">'A'</span>){</span><br><span class="line">        <span class="keyword">return</span> salary * <span class="number">4</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (performanceLevel === <span class="string">'B'</span>){</span><br><span class="line">        <span class="keyword">return</span> salary * <span class="number">3</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (performanceLevel === <span class="string">'C'</span>){</span><br><span class="line">        <span class="keyword">return</span> salary * <span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="title function_">calculateBonus</span>( <span class="string">'B'</span>, <span class="number">20000</span> ) <span class="comment">// 输出：60000</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>可以发现，这段代码十分简单，但是 <code>calculateBonus</code>函数比较庞大，所有的逻辑分支都包含在<code>if else</code>语句中，如果增加了一种新的绩效等级D，或者把A等级的倍数改成5，那我们必须阅读所有代码才能去做修改🙇‍♂️。</p>
+<p>所以我们可以用对象配置/策略模式去简化这个函数😺</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> strategies = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">    [<span class="string">'A'</span>, <span class="number">4</span>],</span><br><span class="line">    [<span class="string">'B'</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="string">'C'</span>, <span class="number">2</span>]</span><br><span class="line">])</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">calculateBonus</span> = (<span class="params">performanceLevel, salary</span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> strategies.<span class="title function_">get</span>(performanceLevel) * salary</span><br><span class="line">}</span><br><span class="line"><span class="title function_">calculateBonus</span>( <span class="string">'B'</span>, <span class="number">20000</span> ) <span class="comment">// 输出：60000</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<p>至此，这个需求做完了，然后产品经理说要加上一个部门区分，假设公司有两个部门D和F，D部门的业绩较好，所以年终奖翻1.2倍😄，F部门的业绩较差，年终奖打9折😭。</p>
+<p>改造以上代码，把状态值拼接，然后存入Map中</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 以绩效_部门的方式拼接键值存入</span></span><br><span class="line"><span class="keyword">let</span> strategies = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">    [<span class="string">'A_D'</span>, <span class="number">4</span> * <span class="number">1.2</span>],</span><br><span class="line">    [<span class="string">'B_D'</span>, <span class="number">3</span> * <span class="number">1.2</span>],</span><br><span class="line">    [<span class="string">'C_D'</span>, <span class="number">2</span> * <span class="number">1.2</span>],</span><br><span class="line">    [<span class="string">'A_F'</span>, <span class="number">4</span> * <span class="number">0.9</span>],</span><br><span class="line">    [<span class="string">'B_F'</span>, <span class="number">3</span> * <span class="number">0.9</span>],</span><br><span class="line">    [<span class="string">'C_F'</span>, <span class="number">2</span> * <span class="number">0.9</span>]</span><br><span class="line">])</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">calculateBonus</span> = (<span class="params">performanceLevel, salary, department</span>) =&gt; {</span><br><span class="line">    <span class="keyword">return</span> strategies.<span class="title function_">get</span>(<span class="string">`<span class="subst">${performanceLevel}</span>_<span class="subst">${department}</span>`</span>) * salary</span><br><span class="line">}</span><br><span class="line"><span class="title function_">calculateBonus</span>( <span class="string">'B'</span>, <span class="number">20000</span>, <span class="string">'D'</span> ) <span class="comment">// 输出：72000</span></span><br><span class="line">复制代码</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="结尾🔚"><a href="#结尾🔚" class="headerlink" title="结尾🔚"></a>结尾🔚</h2><p>本文主要是向大家传递一种思想，我们有很多的方法去优化我们的代码，提高我们代码的可读性。</p>
+<p>对<code>if else</code>并没有歧视的意思，只是希望在大家以后的代码中不仅仅只有<code>if else</code>😨。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">huyu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/8101.html">http://example.com/posts/8101.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hu Yu</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/vue/">vue</a></div><div class="post_share"><div class="social-share" data-image="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202934.png?x-oss-process=style/huyu" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/8990.html" title="配置ESLint和Prettier"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20221028202634.png?x-oss-process=style/huyu" onerror="onerror=null;src='/img/404loading.gif'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">配置ESLint和Prettier</div></div></a></div><div class="next-post pull-right"><a href="/posts/9275.html" title="判断一个对象上是否存在一个属性"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-j3dyoq_1280x720.webp?x-oss-process=style/huyu" onerror="onerror=null;src='/img/404loading.gif'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">判断一个对象上是否存在一个属性</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/45836.html" title="vue 项目路径"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-576rd1_1920x1080.webp?x-oss-process=style/huyu" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-23</div><div class="title">vue 项目路径</div></div></a></div><div><a href="/posts/58641.html" title="vue知识总结"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-rd2x5w_1920x1080.webp?x-oss-process=style/huyu" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-11</div><div class="title">vue知识总结</div></div></a></div><div><a href="/posts/49666.html" title="vue页面刷新"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-57pqz9_1920x1080.webp?x-oss-process=style/huyu" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">vue页面刷新</div></div></a></div><div><a href="/posts/15503.html" title="template报错undefined"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-3zj776_1920x1080.webp?x-oss-process=style/huyu" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-02-23</div><div class="title">template报错undefined</div></div></a></div></div></div><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Utterances</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20230223150133.png?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">huyu</div><div class="author-info__description">今天你学习了吗</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/pan52yu" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">嘿嘿嘿 ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%AD%E8%B7%AF%E8%BF%90%E7%AE%97%F0%9F%92%BB"><span class="toc-number">2.</span> <span class="toc-text">短路运算💻</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%F0%9F%8E%B6"><span class="toc-number">3.</span> <span class="toc-text">三元运算符🎶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch-case%F0%9F%96%A5%EF%B8%8F"><span class="toc-number">4.</span> <span class="toc-text">switch case🖥️</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E9%85%8D%E7%BD%AE-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%F0%9F%93%91"><span class="toc-number">5.</span> <span class="toc-text">对象配置/策略模式📑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B1-%E5%95%86%E5%9C%BA%E4%BF%83%E9%94%80%E4%BB%B7%F0%9F%99%8B"><span class="toc-number">5.1.</span> <span class="toc-text">案例1 商场促销价🙋</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B2-%E5%B9%B4%E7%BB%88%E5%A5%96%F0%9F%8F%86"><span class="toc-number">5.2.</span> <span class="toc-text">案例2 年终奖🏆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE%F0%9F%94%9A"><span class="toc-number">6.</span> <span class="toc-text">结尾🔚</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/22447.html" title="for...in 和 for...of有什么区别"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/1150213.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="for...in 和 for...of有什么区别"></a><div class="content"><a class="title" href="/posts/22447.html" title="for...in 和 for...of有什么区别">for...in 和 for...of有什么区别</a><time datetime="2023-03-01T03:20:08.000Z" title="发表于 2023-03-01 11:20:08">2023-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/12458.html" title="vscode插件推荐"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/2407.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="vscode插件推荐"></a><div class="content"><a class="title" href="/posts/12458.html" title="vscode插件推荐">vscode插件推荐</a><time datetime="2023-02-24T09:13:21.000Z" title="发表于 2023-02-24 17:13:21">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34759.html" title="外挂标签"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/202302242246849.png?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="外挂标签"></a><div class="content"><a class="title" href="/posts/34759.html" title="外挂标签">外挂标签</a><time datetime="2023-02-24T06:13:49.000Z" title="发表于 2023-02-24 14:13:49">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/64859.html" title="ChatGPT保姆级注册教程"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/1292433.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="ChatGPT保姆级注册教程"></a><div class="content"><a class="title" href="/posts/64859.html" title="ChatGPT保姆级注册教程">ChatGPT保姆级注册教程</a><time datetime="2023-02-24T02:18:13.000Z" title="发表于 2023-02-24 10:18:13">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/38825.html" title="常用的vue插件和文档"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-rd2x5w_1920x1080.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="常用的vue插件和文档"></a><div class="content"><a class="title" href="/posts/38825.html" title="常用的vue插件和文档">常用的vue插件和文档</a><time datetime="2023-02-23T08:46:07.000Z" title="发表于 2023-02-23 16:46:07">2023-02-23</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">©2020 - 2023 By huyu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&amp;logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div><hr><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'pan52yu/hugoblogtalks')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  const iframe = document.querySelector('.utterances-frame')
+  if (iframe) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'scsk3LPMieELiM0wSlN9rBRw-gzGzoHsz',
+      appKey: 'NjqulhOKSOEEWehIDtyWFhdv',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Utterances' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="/js/sun_moon.js" async=""></script><script async="" src="//at.alicdn.com/t/font_2264842_3izu8i5eoc2.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax="">
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '120.23,30.21';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax="" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async="" src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>

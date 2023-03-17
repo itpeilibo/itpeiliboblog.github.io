@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>常用正则 | Hu Yu</title><meta name="author" content="huyu"><meta name="copyright" content="huyu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="常用正则 📞号码相关 ●手机号（以 1 开头）：/^(?:(?:+|00)86)?1\d{10}$/ ●手机号（以 13 至19 开头）：/^(?:(?:+|00)86)?1[3-9]\d{9}$/ ●手机号（以工信部公布的手机号段开头）：/^(?:(?:+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用正则">
+<meta property="og:url" content="http://example.com/posts/2964.html">
+<meta property="og:site_name" content="Hu Yu">
+<meta property="og:description" content="常用正则 📞号码相关 ●手机号（以 1 开头）：/^(?:(?:+|00)86)?1\d{10}$/ ●手机号（以 13 至19 开头）：/^(?:(?:+|00)86)?1[3-9]\d{9}$/ ●手机号（以工信部公布的手机号段开头）：/^(?:(?:+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-1p89dv_1920x1080.png?x-oss-process=style/huyu">
+<meta property="article:published_time" content="2021-02-20T07:09:49.000Z">
+<meta property="article:modified_time" content="2023-03-17T16:47:44.562Z">
+<meta property="article:author" content="huyu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-1p89dv_1920x1080.png?x-oss-process=style/huyu"><link rel="shortcut icon" href="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/钢铁侠.png?x-oss-process=style/huyu"><link rel="canonical" href="http://example.com/posts/2964.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":280},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":500,"languages":{"author":"作者: huyu","link":"链接: ","source":"来源: Hu Yu","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常用正则',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-03-18 00:47:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/modify.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.0.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20230223150133.png?x-oss-process=style/huyu" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tools/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tools/Website/"><i class="fa-fw fas fa-file"></i><span> 文档</span></a></li><li><a class="site-page child" href="/tools/templates/"><i class="fa-fw fas fa-code"></i><span> 模板</span></a></li><li><a class="site-page child" href="/tools/plugs/"><i class="fa-fw fas fa-cube"></i><span> 插件</span></a></li><li><a class="site-page child" href="/tools/vpn/"><i class="fa-fw fas fa-water-ladder"></i><span> VPN</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-message"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/love/"><i class="fa-fw fas fa-heart"></i><span> Love</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-1p89dv_1920x1080.png?x-oss-process=style/huyu')"><nav id="nav"><span id="blog-info"><a href="/" title="Hu Yu"><span class="site-name">Hu Yu</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-solid fa-screwdriver-wrench"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tools/learn/"><i class="fa-fw fas fa-graduation-cap"></i><span> 工具</span></a></li><li><a class="site-page child" href="/tools/Website/"><i class="fa-fw fas fa-file"></i><span> 文档</span></a></li><li><a class="site-page child" href="/tools/templates/"><i class="fa-fw fas fa-code"></i><span> 模板</span></a></li><li><a class="site-page child" href="/tools/plugs/"><i class="fa-fw fas fa-cube"></i><span> 插件</span></a></li><li><a class="site-page child" href="/tools/vpn/"><i class="fa-fw fas fa-water-ladder"></i><span> VPN</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-message"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/love/"><i class="fa-fw fas fa-heart"></i><span> Love</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">常用正则</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-20T07:09:49.000Z" title="发表于 2021-02-20 15:09:49">2021-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-17T16:47:44.562Z" title="更新于 2023-03-18 00:47:44">2023-03-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="常用正则"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url('https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-1p89dv_1920x1080.png?x-oss-process=style/huyu');"></div><article class="post-content" id="article-container"><h1 id="常用正则"><a href="#常用正则" class="headerlink" title="常用正则"></a>常用正则</h1><h4 id="📞号码相关"><a href="#📞号码相关" class="headerlink" title="📞号码相关"></a>📞号码相关</h4><p>●手机号（以 1 开头）：/^(?:(?:+|00)86)?1\d{10}$/<br>●手机号（以 13 至19 开头）：/^(?:(?:+|00)86)?1[3-9]\d{9}$/<br>●手机号（以工信部公布的手机号段开头）：/^(?:(?:+|00)86)?1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[189]))\d{8}$/<br>●国内固话号码：/\d{3}-\d{8}|\d{4}-\d{7}/<br>●邮箱号：/^\w+([-+.]\w+)<em>@\w+([-.]\w+)</em>.\w+([-.]\w+)<em>$/<br>●邮政编码：/[1-9]\d{5}(?!\d)/<br>●身份证号：/^[1-9]\d{5}(?:18|19|20)\d{2}(?:0[1-9]|10|11|12)(?:0[1-9]|[1-2]\d|30|31)\d{3}[\dXx]$/<br>●银行卡号（公、私账户）：/^[1-9]\d{9,29}$/<br>●车牌号：/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-HJ-NP-Z][A-HJ-NP-Z0-9]{4,5}[A-HJ-NP-Z0-9挂学警港澳]$/<br>●QQ 号：/^[1-9][0-9]{4,10}$/<br>●微信号：/^[a-zA-Z][-<em>a-zA-Z0-9]{5,19}$/<br>●版本号（ x.y.z ）：/^\d+(?:.\d+){2}$/<br>●合法账号1（字母开头，5-16位，允许字母数字下划线）：/^[a-zA-Z][a-zA-Z0-9</em>]{4,15}$/<br>●合法账号2（4-16位，允许字母，数字，下划线，减号）：/^[a-zA-Z0-9_-]{4,16}$/<br>●强密码1（必须包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间）：/^(?=.</em>\d)(?=.<em>[a-z])(?=.</em>[A-Z]).{8,10}$/<br>●强密码2（必须包含字母、数字、特殊字符：<em>*@#$%^&amp; `~()-+=</em> ）：<br>/^(?![a-zA-Z]+$)(?![A-Z0-9]+$)(?![A-Z\W<em>!@#$%^&amp;* ~()-+=]+$)(?![a-z0-9]+$)(?![a-z\W</em>!@#$%^&amp; <em>~()-+=]+$)(?![0-9\W_!@#$%^&amp;</em> ~()-+=]+$)[a-zA-Z0-9\W<em>!@#$%^&amp;*~()-+=]/<br>●网址：/^(http|https):\/\/[\w-</em>]+(.[\w-_]+)+([\w-.,@?^=%&amp;:/~+#]*[\w-\@?^=%&amp;/~+#])?$/<br>●网址带端口号：/^((ht|f)tps?:\/\/)?[\w-]+(.[\w-]+)+:\d{1,5}\/?$/<br>●ip-v4：/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/<br>●ip-v6：/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/</p>
+<h4 id="🔢数字相关"><a href="#🔢数字相关" class="headerlink" title="🔢数字相关"></a>🔢数字相关</h4><p>●只有数字：/^[0-9]<em>$/ 或 /^\d{1,}$/<br>●整数：/^-?[0-9]\d</em>$/<br>●正整数：/^+?[1-9]\d<em>$/<br>●非正整数：/^-[1-9]\d</em>|0$/<br>●负整数：/^-[1-9]\d<em>$/<br>●非负整数：/^\d+$/<br>●浮点数：/^(-?\d+)(.\d+)?$/<br>●正浮点数：/^[1-9]\d</em>.\d<em>|0.\d</em>[1-9]\d<em>$/<br>●负浮点数：/^-([1-9]\d</em>.\d<em>|0.\d</em>[1-9]\d<em>)/<br>●小数：/^-?\d+.\d+$/<br>●正数/负数/小数：/^(-|+)?\d+(.\d+)?$/<br>●正实数保留小数点后 2 位：/^[0-9]+(.[0-9]{2})?$/<br>●正实数保留小数点后 1 到 3 位：/^[0-9]+(.[0-9]{1,3})?$/<br>●n 位数字：/^\d{n}$/<br>●至少 n 位数字：/^\d{n,}$/<br>●m 至 n 位的数字：/^\d{m,n}$/<br>●数字和字母至少包含其一：/^[A-Za-z0-9]+$/<br>●必须包含数字和字母：/^(?=.</em>[a-zA-Z])(?=.<em>\d).+$/<br>●md5 值 ：/^([a-f\d]{32}|[A-F\d]{32})$/<br>●base64 值：/^\s</em>data:(?:[a-z]+\/[a-z0-9-+.]+(?:;[a-z-]+=[a-z0-9-]+)?)?(?:;base64)?,([a-z0-9!$&amp;’,()<em>+;=-._~:@/?%\s]</em>?)\s*$/i</p>
+<h4 id="🔣字符相关"><a href="#🔣字符相关" class="headerlink" title="🔣字符相关"></a>🔣字符相关</h4><p>●m 至 n 位的字符：/^.{3,20}$/<br>●英文字母字符：/^[A-Za-z]+$/<br>●大写英文字母字符：/^[A-Z]+$/<br>●小写英文字母字符：/^[a-z]+$/<br>●汉字：/^[\u4e00-\u9fa5]{0,}$/<br>●全角符号：/[\uFF00-\uFFFF]/<br>●半角符号：/[\u0000-\u00FF]/<br>●汉字、英文、数字、下划线至少其一：/^[\u4E00-\u9FA5A-Za-z0-9_]+$/<br>●不包含字符 “~” ：/<sup><a href="#fn_~\x22" id="reffn_~\x22">~\x22</a></sup>+/<br>●字符连续重复：/(.)\1+/<br>●用来判断 textarea 是否全为空（不可全为空格和换行，允许字符前面和后面为空）：/^[\s\S]<em>.</em><sup><a href="#fn_\s" id="reffn_\s">\s</a></sup>[\s\S]*$/</p>
+<h4 id="⌚时间相关"><a href="#⌚时间相关" class="headerlink" title="⌚时间相关"></a>⌚时间相关</h4><p>●24小时制时间（HH:mm:ss）：/^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/<br>●12小时制时间（hh:mm:ss）：/^(?:1[0-2]|0?[1-9]):[0-5]\d:[0-5]\d$/<br>●24小时制时间（HHmmss）：/([0-1]?[0-9]|2[0-3])([0-5][0-9])([0-5][0-9])$/<br>●日期1（yyyy-MM-dd，如 2222-01-01，年份必为4位）：/^\d{4}-\d{1,2}-\d{1,2}/<br>●日期2（如 333-01-01，年份可小于4位）：/^\d{1,4}(-)(1[0-2]|0?[1-9])\1(0?[1-9]|[1-2]\d|30|31)$/<br>●日期3（yyyyMMdd，如 20220202）：/^((([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))0229))$/<br>●日期+时间1（YYYYMMDD HH:mm:ss）：/^\d{4}([/:-\S])(1[0-2]|0?[1-9])\1(0?[1-9]|[1-2]\d|30|31) (?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/<br>●日期+时间2： /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])\s+(20|21|22|23|[0-1]\d):[0-5]\d:[0-5]\d$/<br>●一年 12 个月（(01～09 或 1～12)）：/^(0?[1-9]|1[0-2])$/<br>●一个月 31 天（01～09 或 1～31）：/^((0?[1-9])|((1|2)[0-9])|30|31)$/<br>●有 31 天的月份：/^(0?[13578]|1[02])$/<br>●有 30 天月的份：/(0[469]|11)-(0[1-9]|[12][0-9]|30)/<br>●2 月 28 天（”02-28”）：/^02-(0[1-9]|[1][0-9]|2[0-8])$/<br>●闰年：/^(((19|20)([13579][26]|[2468][048]|0[48]))|(2000))$/<br>●闰年 2 月（比如 2008-02-01）：/^(((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-(0?[1-9]|[12]\d)$/<br>●日期（包括闰年、大小月的判断）：/((((19|20)\d{2})-(0?(1|[3-9])|1[012])-(0?[1-9]|[12]\d|30))|(((19|20)\d{2})-(0?[13578]|1[02])-31)|(((19|20)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-29))$/<br>●年份区间-年（比如 19 年至 20 年）：/^((19|20)\d{2})$/<br>●年份区间-年月（比如 1999-01）：/^((((19|20)\d{2})-(0?[13-9]|1[012]))|(((19|20)\d{2})-(0?[13578]|1[02]))|(((19|20)\d{2})-0?2)|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2))$/<br>●年份区间-年月日（比如 1999-01-01）：/^((((19|20)\d{2})-(0?[13-9]|1[012])-(0?[1-9]|[12]\d|30))|(((19|20)\d{2})-(0?[13578]|1[02])-31)|(((19|20)\d{2})-0?2-(0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))-0?2-29))$/.test(‘2021-02-21’)$/<br>●年份区间-年月日（间隔符号可为 - / 或空）：/^(?:(?:1[6-9]|[2-9][0-9])[0-9]{2}([-/.]?)(?:(?:0?[1-9]|1[0-2])\1(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])\1(?:29|30)|(?:0?[13578]|1[02])\1(?:31))|(?:(?:1[6-9]|[2-9][0-9])(?:0[48]|[2468][048]|[13579][26])|(?:16|[2468][048]|[3579][26])00)([-/.]?)0?2\2(?:29))$/</p>
+<h4 id="💻编程相关"><a href="#💻编程相关" class="headerlink" title="💻编程相关"></a>💻编程相关</h4><p>●16进制颜色：/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/<br>●提取网页颜色代码：/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/<br>●视频链接地址：/^https?:\/\/(.+\/)+.+(.(swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb|mp4))$/i<br>●图片链接地址：/^https?:\/\/(.+\/)+.+(.(gif|png|jpg|jpeg|webp|svg|psd|bmp|tif))$/i<br>●mac 地址：/^((([a-f0-9]{2}:){5})|(([a-f0-9]{2}-){5}))[a-f0-9]{2}$/i<br>●子网掩码：/^((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))$/<br>●文件扩展名效验：/^([a-zA-Z]\:|\\)\\(<sup><a href="#fn_\\\\" id="reffn_\\\\">\\\\</a></sup>+\\)<em>[^\/:</em>?”&lt;&gt;|]+\.txt(l)?$/<br>●java包名（x.x.x）：/^([a-zA-Z<em>]\w*)+([.][a-zA-Z</em>]\w<em>)+$/<br>●xml文件：/^([a-zA-Z]+-?)+[a-zA-Z0-9]+\.[x|X][m|M][l|L]$/<br>●html 注释：/&lt;!—[\s\S]</em>?—&gt;/g<br>●html 标签1：/&lt;(\w+)<sup><a href="#fn_>" id="reffn_>">&gt;</a></sup><em>&gt;(.</em>?&lt;\/\1&gt;)?/<br>●html 标签2：/&lt;(\S<em>?)<sup><a href="#fn_>" id="reffn_>">&gt;</a></sup></em>&gt;.<em>?&lt;/\1&gt;|&lt;.</em>? /&gt;/<br>●首尾空白字符：/^\s<em>|\s</em>$/<br>●查找CSS属性:/^\s<em>[a-zA-Z\-]+\s</em>[:]{1}\s[a-zA-Z0-9\s.#]+[;]{1}/<br>●提取页面超链接:/(<a\\s*(?!.*\\brel=)[^>]<em>)(href=”https?:\/\/)((?!(?:(?:www\.)?’.implode(‘|(?:www\.)?’, $follow_list).’))<sup><a href="#fn_" rel="external nofollow" "="" id="reffn_">" rel="external nofollow" </a></sup>+)”((?!.</em>\brel=)<sup><a href="#fn_>" id="reffn_>">&gt;</a></sup><em>)(?:<sup><a href="#fn_>" id="reffn_>">&gt;</a></sup></em>)&gt;/<br>●提取网页图片：/\&lt; <em>[img]<sup><a href="#fn_\\\\>" id="reffn_\\\\>">\\\\&gt;</a></sup></em>[src] <em>= </em>[\“\‘]{0,1}(<sup><a href="#fn_\\" \\'\\="">" id="reffn_\\"\\'\\ &gt;"&gt;\\"\\'\\ &gt;</a></sup><em>)/<br>●迅雷链接：/^thunder:\/\/[a-zA-Z0-9]+=$/<br>●ed2k链接：/^ed2k:\/\/|file|.+|\/$/<br>●linux”文件”路径：/^\/(\w+\/)+\w+.\w+$/<br>●window下”文件”路径：/^[a-zA-Z]:\(?:\w+\)</em>\w+.\w+$/<br>●匹配富文本中的字符（这里匹配的是字符：8）： str.replace(/8(?=<sup><a href="#fn_>" id="reffn_>">&gt;</a></sup>*(&lt;|$))/g, ‘x’)</a\\s*(?!.*\\brel=)[^></p>
+<h4 id="🍕生活相关"><a href="#🍕生活相关" class="headerlink" title="🍕生活相关"></a>🍕生活相关</h4><p>●金额（宽松，可为负、首位可为0，支持千分位分隔）：/^-?\d+(,\d{3})<em>(.\d{1,2})?$/<br>●金额（大于 0 ，两位小数）：/(^[1-9]{1}[0-9]</em>$)|(^[0-9]*.[0-9]{2}$)/<br>●金额（严格，不为负、小数点后最多两位，首位不为0）：/(^<a href="[0-9]+">1-9</a>?(.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9].<a href="[0-9]">0-9</a>?$)/<br>●护照：/(^[EeKkGgDdSsPpHh]\d{8}$)|(^(([Ee][a-fA-F])|([DdSsPp][Ee])|([Kk][Jj])|([Mm][Aa])|(1[45]))\d{7}$)/<br>●香港身份证：/^[a-zA-Z]\d{6}([\dA])$/<br>●澳门身份证：/^[1|5|7]\d{6}(\d)$/<br>●湾湾身份证：/^[a-zA-Z][0-9]{9}$/<br>●股票代码：/^(s[hz]|S[HZ])(000[\d]{3}|002[\d]{3}|300[\d]{3}|600[\d]{3}|60[\d]{4})$/<br>●不含 abc 的单词：/\b((?!abc)\w)+\b/</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">huyu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/posts/2964.html">http://example.com/posts/2964.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hu Yu</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-1p89dv_1920x1080.png?x-oss-process=style/huyu" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/posts/30429.html" title="使用nvm切换node版本"><img class="cover" src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/风暴之眼.webp?x-oss-process=style/huyu" onerror="onerror=null;src='/img/404loading.gif'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用nvm切换node版本</div></div></a></div></nav><hr><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Utterances</span><span class="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/20230223150133.png?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info__name">huyu</div><div class="author-info__description">今天你学习了吗</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/pan52yu" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">嘿嘿嘿 ~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%AD%A3%E5%88%99"><span class="toc-number">1.</span> <span class="toc-text">常用正则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%9E%E5%8F%B7%E7%A0%81%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">📞号码相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%A2%E6%95%B0%E5%AD%97%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">🔢数字相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%A3%E5%AD%97%E7%AC%A6%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">🔣字符相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%8C%9A%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">⌚时间相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%92%BB%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">💻编程相关</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%8D%95%E7%94%9F%E6%B4%BB%E7%9B%B8%E5%85%B3"><span class="toc-number">1.0.0.6.</span> <span class="toc-text">🍕生活相关</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/22447.html" title="for...in 和 for...of有什么区别"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/1150213.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="for...in 和 for...of有什么区别"></a><div class="content"><a class="title" href="/posts/22447.html" title="for...in 和 for...of有什么区别">for...in 和 for...of有什么区别</a><time datetime="2023-03-01T03:20:08.000Z" title="发表于 2023-03-01 11:20:08">2023-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/12458.html" title="vscode插件推荐"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/2407.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="vscode插件推荐"></a><div class="content"><a class="title" href="/posts/12458.html" title="vscode插件推荐">vscode插件推荐</a><time datetime="2023-02-24T09:13:21.000Z" title="发表于 2023-02-24 17:13:21">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/34759.html" title="外挂标签"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/202302242246849.png?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="外挂标签"></a><div class="content"><a class="title" href="/posts/34759.html" title="外挂标签">外挂标签</a><time datetime="2023-02-24T06:13:49.000Z" title="发表于 2023-02-24 14:13:49">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/64859.html" title="ChatGPT保姆级注册教程"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/1292433.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="ChatGPT保姆级注册教程"></a><div class="content"><a class="title" href="/posts/64859.html" title="ChatGPT保姆级注册教程">ChatGPT保姆级注册教程</a><time datetime="2023-02-24T02:18:13.000Z" title="发表于 2023-02-24 10:18:13">2023-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/38825.html" title="常用的vue插件和文档"><img src="https://huyu-blog.oss-cn-hangzhou.aliyuncs.com/img/wallhaven-rd2x5w_1920x1080.webp?x-oss-process=style/huyu" onerror="this.onerror=null;this.src='/img/404loading.gif'" alt="常用的vue插件和文档"></a><div class="content"><a class="title" href="/posts/38825.html" title="常用的vue插件和文档">常用的vue插件和文档</a><time datetime="2023-02-23T08:46:07.000Z" title="发表于 2023-02-23 16:46:07">2023-02-23</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">©2020 - 2023 By huyu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&amp;logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div><hr><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadUtterances () {
+  let ele = document.createElement('script')
+  ele.setAttribute('id', 'utterances_comment')
+  ele.setAttribute('src', 'https://utteranc.es/client.js')
+  ele.setAttribute('repo', 'pan52yu/hugoblogtalks')
+  ele.setAttribute('issue-term', 'pathname')
+  let nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+  ele.setAttribute('theme', nowTheme)
+  ele.setAttribute('crossorigin', 'anonymous')
+  ele.setAttribute('async', 'true')
+  document.getElementById('utterances-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function utterancesTheme () {
+  const iframe = document.querySelector('.utterances-frame')
+  if (iframe) {
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    const message = {
+      type: 'set-theme',
+      theme: theme
+    };
+    iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+}
+
+if ('Utterances' === 'Utterances' || !false) {
+  if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+  else loadUtterances()
+} else {
+  function loadOtherComment () {
+    loadUtterances()
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'scsk3LPMieELiM0wSlN9rBRw-gzGzoHsz',
+      appKey: 'NjqulhOKSOEEWehIDtyWFhdv',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Utterances' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="/js/sun_moon.js" async=""></script><script async="" src="//at.alicdn.com/t/font_2264842_3izu8i5eoc2.js"></script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax="">
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'b16a1fa0e63c46a4b8f28abfb06ae3fe';
+  var gaud_map_key = 'e2b04289e870b005374ee030148d64fd&s=rsv3';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '120.23,30.21';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax="" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script async="" src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
